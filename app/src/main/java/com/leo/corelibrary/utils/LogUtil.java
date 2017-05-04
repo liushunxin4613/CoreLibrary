@@ -1,5 +1,6 @@
 package com.leo.corelibrary.utils;
 
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -9,20 +10,24 @@ import com.google.gson.Gson;
  * LOG管理类
  */
 public class LogUtil {
-    private static boolean isDebug = false;//当app开发完成之后要置为false
+    private static boolean isDebug = true;//当app开发完成之后要置为false
     private static boolean isDDebug = true;
     private static boolean isIDebug = true;
     private static boolean isEDebug = true;
     private static Gson gson = new Gson();
-    private static String DEFAULT = "";
     private static String APP_PACKAGE = "com.leo.me";
+
+    public static void start(@NonNull String appPagckage){
+        isDebug = true;
+        APP_PACKAGE = appPagckage;
+    }
 
     /**
      * 获取class 名称
      */
     private static String getClassName(Object obj) {
         if (obj == null) {
-            return DEFAULT;
+            return "";
         }
         String name = obj.getClass().getName();
         String simpleName = obj.getClass().getSimpleName();
